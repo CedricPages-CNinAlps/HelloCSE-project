@@ -8,6 +8,8 @@ Installation micro projet HelloCSE
     --> Créatrion base 'hellocse'
     --> Création d'un utilisateur 'cse' pour l'interfacing avec un mp 'hellopw23072023'
 
+----------------------------------------------------------------------------------------------------------------
+
 Création branche '1-authentification'
 
 1- Installation de Laravel Breeze
@@ -21,21 +23,31 @@ Création branche '1-authentification'
 
 Pull request 1-2 sur 'Master'
 
+----------------------------------------------------------------------------------------------------------------
+
 Création branche '2-backoffice'
 
 1- Création dans le dossier 'resources/views' du dossier 'nos-stars' qui contient 4 templates blade :
 
 2- Création du fichier de migration et controller via les lignes de commandes suivantes :
     --> ```php artisan make:migration create_stars_table```
-    --> ````php artisan migrate```
-    --> ````php artisan make:mode Star```
-    --> ````php artisan make:controller StarController```
+    --> ```php artisan migrate```
+    --> ```php artisan make:mode Star```
+    --> ```php artisan make:controller StarController```
 
 3- Mise en place des routes du BO dans le fichier '/routes/web.php'
 
 Pull request 3 sur 'Master'
 
+----------------------------------------------------------------------------------------------------------------
+
 Création branche '3-frontoffice'
 
 Préparation d'installation de VueJs 3, création de la branche '3.1-vuejs-3'
 
+1- Installation VueJs 3
+    --> ```npm install vue@next```
+    --> ```npm install @vitejs/plugin-vue```
+
+2- Configuration des fichiers 'vite.config.js' et 'app.js', création d'un composant principal 'App.vue'
+    --> ```npm run dev```
