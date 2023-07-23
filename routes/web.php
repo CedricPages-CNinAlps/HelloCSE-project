@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
                 ->name('added-star');
             Route::get('edit/{id}', [StarController::class, 'edit'])
                 ->name('edit-star');
-            Route::put('update/{id}', [StarController::class, 'update']);
+            Route::put('update/{id}', [StarController::class, 'update'])->name('update-star');
             Route::delete('delete/{id}', [StarController::class, 'destroy'])
                 ->name('delete-star');
         });

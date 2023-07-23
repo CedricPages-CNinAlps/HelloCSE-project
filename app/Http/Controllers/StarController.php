@@ -38,7 +38,7 @@ class StarController extends Controller
     public function edit($id): View
     {
         $editStar = Star::find($id);
-        return view('nos-stars.editStar', compact($editStar));
+        return view('nos-stars.editStar', compact('editStar'));
     }
 
     public function update(Request $request, $id): RedirectResponse

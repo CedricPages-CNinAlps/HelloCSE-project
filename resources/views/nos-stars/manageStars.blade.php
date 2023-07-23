@@ -21,8 +21,20 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <a class="btn btn-success add" role="button" type="button" href="{{ route('add-star') }}">Ajouter une nouvelle
+                        star à la liste</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="table-manage">
-                    <table class="table table-light table-striped table-bordered table-hover table-sm  align-middle p-6 text-gray-900 dark:text-gray-100">
+                    <table
+                        class="table table-light table-striped table-bordered table-hover table-sm  align-middle p-6 text-gray-900 dark:text-gray-100">
                         <tr class="align-middle table-secondary text-center">
                             <th>ID</th>
                             <th>EDITER</th>
