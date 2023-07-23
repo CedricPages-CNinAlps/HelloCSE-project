@@ -19,5 +19,15 @@ Création branche '1-authentification'
 
 2- Création d'un utilisateur via un compte mail pour vérifier que toute cela est bon.
 
+Création branche '2-backoffice'
 
+1- Création dans le dossier 'resources/views' du dossier 'nos-stars' qui contient 4 templates blade :
+
+2- Création du fichier de migration et controller via les lignes de commandes suivantes :
+    --> ```php artisan make:migration create_stars_table```
+    --> ````php artisan migrate```
+    --> ````php artisan make:mode Star```
+    --> ````php artisan make:controller StarController```
+
+3- Mise en place des routes du BO dans le fichier '/routes/web.php'
 
