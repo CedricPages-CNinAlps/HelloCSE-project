@@ -43,6 +43,7 @@ Pull request 3 sur 'Master'
 
 Création branche '3-frontoffice'
 
+------------------------------------------------------
 Préparation d'installation de VueJs 3, création de la branche '3.1-vuejs-3'
 
 1- Installation VueJs 3
@@ -52,4 +53,14 @@ Préparation d'installation de VueJs 3, création de la branche '3.1-vuejs-3'
 2- Configuration des fichiers 'vite.config.js' et 'app.js', création d'un composant principal 'App.vue'
     --> ```npm run dev```
 
+------------------------------------------------------
 Préparation d'installation de Tailwindcss, création de la branche '3.2-tailwind'
+
+1- Installation Tailwindcss
+    --> ```npm install -D tailwindcss postcss autoprefixer```
+    --> ```npx tailwindcss init -p```
+
+2- Configuration du fichier 'tailwind.config.js' en modifiant 'src' par 'resources'
+    --> ```npm run dev```
+
+------------------------------------------------------
