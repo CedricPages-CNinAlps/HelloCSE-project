@@ -15,7 +15,7 @@
                         <x-primary-button>Retour à la liste</x-primary-button>
                     </a>
 
-                    <form class="newstar" method="POST" action="{{ route('added-star') }}">
+                    <form class="newstar" method="POST" action="{{ route('added-star') }}" enctype="multipart/form-data">
                         @csrf
                         @method('post')
                         <div class="row g-3">

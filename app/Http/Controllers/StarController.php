@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Star;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class StarController extends Controller
 {
@@ -32,11 +33,21 @@ class StarController extends Controller
 
     public function create(Request $request): RedirectResponse
     {
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        // Récupérer le fichier image depuis le formulaire
+        $image = $request->file('image');
+
+        // Télécharger et enregistrer l'image dans le dossier /images/import
+        $imagePath = $image->store('import', 'public');
+
         $newStar = new Star();
         $newStar->firstname = $request->input('firstname');
         $newStar->lastname = $request->input('lastname');
         $newStar->description = $request->input('description');
-        $newStar->image = $request->input('image');
+        $newStar->image = $imagePath; // Enregistrez le chemin de l'image dans la base de données
         $newStar->save();
 
         return Redirect::to('/nos-stars/manage');
@@ -50,11 +61,31 @@ class StarController extends Controller
 
     public function update(Request $request, $id): RedirectResponse
     {
+        $request->validate([
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:8048',
+        ]);
+
+        dd($request->all());
+
         $updateStar = Star::find($id);
         $updateStar->firstname = $request->input('firstname');
         $updateStar->lastname = $request->input('lastname');
         $updateStar->description = $request->input('description');
         $updateStar->image = $request->input('image');
+        // Vérifier si une nouvelle image a été soumise dans le formulaire
+        if ($request->hasFile('image')) {
+            // Récupérer le fichier image depuis le formulaire
+            $image = $request->file('image');
+
+            // Supprimer l'ancienne image du dossier /images/import
+            Storage::disk('public')->delete($updateStar->image);
+
+            // Télécharger et enregistrer la nouvelle image dans le dossier /images/import
+            $imagePath = $image->store('import', 'public');
+
+            // Mettre à jour le chemin de l'image dans la base de données
+            $updateStar->image = $imagePath;
+        }
         $updateStar->save();
 
         return Redirect::to('/nos-stars/manage');

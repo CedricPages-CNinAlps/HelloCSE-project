@@ -13,7 +13,7 @@
                         <a class="p-6 text-gray-900 dark:text-gray-100" role="button" type="button" href="{{ route('show-stars') }}"
                            style="margin-bottom: 40px"><x-primary-button>Retour à la liste</x-primary-button></a>
 
-                        <form class="editstar" method="POST" action="{{ route('update-star', ['id' => $editStar['id']]) }}">
+                        <form class="editstar" method="POST" action="{{ route('update-star', ['id' => $editStar['id']]) }}" enctype="multipart/form-data">
                             @csrf
                             @method('put')
                             <div class="row g-3">
@@ -33,6 +33,12 @@
                                     <x-input-label for="description" :value="__('Description')" />
                                     <x-text-input type="textarea" class="form-control" name="description" placeholder="Description"
                                                   required style="width: 100%; height: 500px" value="{{$editStar['description']}}"/>
+                                </div>
+
+                                <div class="col-sm-4 p-6 text-gray-900 dark:text-gray-100">
+                                    <x-input-label for="image" :value="__('Image')" />
+                                    <x-text-input type="file" class="form-control" name="image" placeholder="Fichier image" id="image" accept="image/*"
+                                                  value="{{$editStar['image']}}"/>
                                 </div>
 
                                 <div class="p-6 text-gray-900 dark:text-gray-100">
