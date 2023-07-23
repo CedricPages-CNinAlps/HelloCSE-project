@@ -21,5 +21,8 @@ Création branche '1-authentification'
 
 Création branche '2-backoffice'
 
+1- Création dans le dossier 'resources/views' du dossier 'nos-stars' qui contient 4 templates blade :
 
+2- Création du fichier de migration et controller via les lignes de commandes suivantes :
+    --> ```php artisan make:migration create_stars_table```
 
