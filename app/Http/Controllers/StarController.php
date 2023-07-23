@@ -10,6 +10,13 @@ use Illuminate\View\View;
 
 class StarController extends Controller
 {
+    // Méthode pour le front-office
+    public function index()
+    {
+        $stars = Star::all();
+        return response()->json($stars);
+    }
+
     // Methode d'affichage des données dans le BO
     public function show(Request $request)
     {
