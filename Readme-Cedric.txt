@@ -66,4 +66,7 @@ Préparation d'installation de Tailwindcss, création de la branche '3.2-tailwin
 ------------------------------------------------------
 Mise en place du développement du front
 
+Création d'un composant Profile.vue pour afficher la donnée.
 
+------------------------------------------------------
+Préparation d'installation de Tailwindcss, création de la branche '3.3-axios'
