@@ -65,3 +65,5 @@ Préparation d'installation de Tailwindcss, création de la branche '3.2-tailwin
 
 ------------------------------------------------------
 Mise en place du développement du front
+
+
