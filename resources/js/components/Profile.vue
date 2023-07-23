@@ -1,36 +1,66 @@
 <template>
     <div>
-        <!-- Liste des noms/prenoms -->
-        <ul>
-            <li v-for="star in stars" :key="star.id" @click="showDetails(star)" class="text-m font-bold">
-                {{ star.firstname }} {{ star.lastname }}
-            </li>
-        </ul>
+        <div>
+            <h2 class="py-8 text-3xl font-bold">Version Axios</h2>
+            <ul>
+                <li v-for="star in starsaxios" :key="star.id" @click="showDetails(star)" class="text-m font-bold">
+                    {{ star.firstname }} {{ star.lastname }}
+                </li>
+            </ul>
 
-        <!-- Affichage des détails -->
-        <div v-if="selectedStar" class="details">
-            <!-- Affichage à droite (sur un ordinateur) -->
-            <div v-if="isDesktop">
-                <img class="float-left" :src="selectedStar.image" style="width:450px">
-                <h2 class="py-8 text-2xl font-bold">{{ selectedStar.firstname }} {{ selectedStar.lastname }}</h2>
-                <p>{{ selectedStar.description }}</p>
+            <!-- Affichage des détails -->
+            <div v-if="selectedStar" class="details">
+                <!-- Affichage à droite (sur un ordinateur) -->
+                <div v-if="isDesktop">
+                    <img class="float-left" :src="selectedStar.image" style="width:450px">
+                    <h2 class="py-8 text-3xl font-bold">{{ selectedStar.firstname }} {{ selectedStar.lastname }}</h2>
+                    <p>{{ selectedStar.description }}</p>
+                </div>
+
+                <!-- Affichage en dessous (sur un mobile) -->
+                <div v-else>
+                    <img class="float-left" :src="selectedStar.image" style="width:100px">
+                    <h2 class="py-8 text-xl font-bold">{{ selectedStar.firstname }} {{ selectedStar.lastname }}</h2>
+                    <p>{{ selectedStar.description }}</p>
+                </div>
             </div>
+        </div>
+        <div>
+            <h2 class="py-8 text-3xl font-bold">Version en dur</h2>
+            <ul>
+                <li v-for="star in stars" :key="star.id" @click="showDetails(star)" class="text-m font-bold">
+                    {{ star.firstname }} {{ star.lastname }}
+                </li>
+            </ul>
 
-            <!-- Affichage en dessous (sur un mobile) -->
-            <div v-else>
-                <img class="float-left" :src="selectedStar.image" style="width:100px">
-                <h2 class="py-8 text-xl font-bold">{{ selectedStar.firstname }} {{ selectedStar.lastname }}</h2>
-                <p>{{ selectedStar.description }}</p>
+            <!-- Affichage des détails -->
+            <div v-if="selectedStar" class="details">
+                <!-- Affichage à droite (sur un ordinateur) -->
+                <div v-if="isDesktop">
+                    <img class="float-left" :src="selectedStar.image" style="width:450px">
+                    <h2 class="py-8 text-3xl font-bold">{{ selectedStar.firstname }} {{ selectedStar.lastname }}</h2>
+                    <p>{{ selectedStar.description }}</p>
+                </div>
+
+                <!-- Affichage en dessous (sur un mobile) -->
+                <div v-else>
+                    <img class="float-left" :src="selectedStar.image" style="width:100px">
+                    <h2 class="py-8 text-xl font-bold">{{ selectedStar.firstname }} {{ selectedStar.lastname }}</h2>
+                    <p>{{ selectedStar.description }}</p>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     name: "Profile",
     data() {
         return {
+            starsaxios: {},
             stars: [
                 {
                     id: 1,
@@ -81,12 +111,25 @@ export default {
         showDetails(star) {
             this.selectedStar = star;
         },
+        getResult() {
+            axios.get('/data/starsList')
+                .then((response) => {
+                    this.starsaxios = response.data.results
+                })
+                .catch((error) => {
+                    console.log(error.response.data);
+                });
+        },
     },
     mounted() {
         // Mettre à jour la valeur de isDesktop lors du redimensionnement de l'écran
         window.addEventListener('resize', () => {
             this.isDesktop = window.innerWidth >= 640;
         });
+        console.log(this.starsaxios)
+    },
+    created() {
+        this.getResult()
     },
 }
 </script>
