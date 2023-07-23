@@ -8,7 +8,6 @@
 </head>
 <body>
 <main id="app">
-
 </main>
 @vite('resources/js/app.js')
 </body>
