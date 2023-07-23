@@ -19,6 +19,8 @@ Création branche '1-authentification'
 
 2- Création d'un utilisateur via un compte mail pour vérifier que toute cela est bon.
 
+Pull request 1-2 sur 'Master'
+
 Création branche '2-backoffice'
 
 1- Création dans le dossier 'resources/views' du dossier 'nos-stars' qui contient 4 templates blade :
@@ -30,4 +32,10 @@ Création branche '2-backoffice'
     --> ````php artisan make:controller StarController```
 
 3- Mise en place des routes du BO dans le fichier '/routes/web.php'
+
+Pull request 3 sur 'Master'
+
+Création branche '3-frontoffice'
+
+Préparation d'installation de VueJs 3, création de la branche '3.1-vuejs-3'
 
