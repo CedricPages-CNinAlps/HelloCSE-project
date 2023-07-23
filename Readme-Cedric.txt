@@ -12,4 +12,10 @@ Création branche '1-authentification'
 
 1- Installation de Laravel Breeze
     --> ```composer require laravel/breeze --dev```
+    --> ```php artisan breeze:install```
+    --> ```php artisan migrate```
+    --> ```npm install```
+    --> ```npm run dev```
+
+2- Création d'un utilisateur via un compte mail pour vérifier que toute cela est bon.
 
