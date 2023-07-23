@@ -70,3 +70,7 @@ Création d'un composant Profile.vue pour afficher la donnée.
 
 ------------------------------------------------------
 Préparation d'installation de Tailwindcss, création de la branche '3.3-axios'
+
+Pull request 4 sur 'Master'
+
+----------------------------------------------------------------------------------------------------------------
