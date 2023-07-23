@@ -25,4 +25,9 @@ Création branche '2-backoffice'
 
 2- Création du fichier de migration et controller via les lignes de commandes suivantes :
     --> ```php artisan make:migration create_stars_table```
+    --> ````php artisan migrate```
+    --> ````php artisan make:mode Star```
+    --> ````php artisan make:controller StarController```
+
+3- Mise en place des routes du BO dans le fichier '/routes/web.php'
 

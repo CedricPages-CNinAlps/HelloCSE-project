@@ -17,7 +17,7 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('nos-stars')" :active="request()->routeIs('nos-stars')">
+                    <x-nav-link :href="route('show-stars')" :active="request()->routeIs('show-stars')">
                         {{ __('Nos stars') }}
                     </x-nav-link>
                 </div>

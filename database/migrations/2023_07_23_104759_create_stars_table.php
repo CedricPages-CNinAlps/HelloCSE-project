@@ -11,6 +11,7 @@ return new class extends Migration
      *
      * @return void
      */
+    /* Fonction permettant la création dans la BDD des stars */
     public function up()
     {
         Schema::create('stars', function (Blueprint $table) {
