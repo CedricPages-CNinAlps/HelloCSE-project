@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <section style="display: flex; flex-direction: column; align-items: stretch; flex-wrap: wrap;">
                         <a class="p-6 text-gray-900 dark:text-gray-100" role="button" type="button" href="{{ route('show-stars') }}"
-                           style="margin-bottom: 40px">Retour à la liste</a>
+                           style="margin-bottom: 40px"><x-primary-button>Retour à la liste</x-primary-button></a>
 
                         <form class="editstar" method="POST" action="{{ route('update-star', ['id' => $editStar['id']]) }}">
                             @csrf
@@ -35,7 +35,9 @@
                                                   required style="width: 100%; height: 500px" value="{{$editStar['description']}}"/>
                                 </div>
 
+                                <div class="p-6 text-gray-900 dark:text-gray-100">
                                 <x-primary-button>{{ __('Mettre à jour la star') }}</x-primary-button>
+                                </div>
 
                             </div>
                         </form>

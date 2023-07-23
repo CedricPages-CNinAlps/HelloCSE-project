@@ -22,8 +22,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <a class="btn btn-success add" role="button" type="button" href="{{ route('add-star') }}">Ajouter une nouvelle
-                        star à la liste</a>
+                    <a class="btn btn-success add" role="button" type="button" href="{{ route('add-star') }}"><x-primary-button>Ajouter une nouvelle
+                            star à la liste</x-primary-button></a>
                 </div>
             </div>
         </div>
@@ -50,12 +50,12 @@
                                 <td class="text-center" style="width: 60px">{{$star['id']}}</td>
                                 <td style="width: 60px">
                                     <a class="btn edit-header" role="button" type="button"
-                                       href="/nos-stars/edit/{{$star['id']}}">
+                                       href="{{ route('edit-star', ['id' => $star['id']]) }}">
                                         <img src="/images/pictos/edit.svg">
                                     </a>
                                 </td>
                                 <td style="width: 60px">
-                                    <form class="delete-employee" action="/nos-stars/delete/{{$star['id']}}"
+                                    <form class="delete-employee" action="{{ route('delete-star', ['id' => $star['id']]) }}"
                                           method="post">
                                         @method('DELETE')
                                         @csrf
