@@ -1,4 +1,52 @@
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
 Installation micro projet HelloCSE
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+
+Sur votre environnement de travail, clic droit et faire
+    --> "Git bash here"
+puis faire un
+    --> "git clone https://github.com/CedricPages-CNinAlps/HelloCSE-project.git"
+
+Ensuite, lancer MAMP/WAMP/XAMPP dans phpMyAdmin :
+    --> Créer une base de données : ex "hellocse"
+    --> Créer un utilisateur : ex "cse"
+    --> Créer un mp : ex "hellopw23072023"
+
+Une fois cela fait, compléter le .env avec les informations précédentes dans la partie :
+    --> DB_DATABASE=hellocse
+    --> DB_USERNAME=cse
+    --> DB_PASSWORD=hellopw23072023
+
+Un fois tous cela réaliser retourner sur le git bash et lancer :
+    --> "npm install"
+    --> "npm run serve && php artisan serve"
+
+Le projet se lancera en http://localhost ou http://127.0.0.1:8000/
+
+Pour information, le projet comporte 9 branches :
+    --> Branche principale : "master";
+    --> Branches de développement step by step :
+            --> '1-authentification' : Branche de mise en place de l'authentification Breeze
+            --> '2-backoffice' : Construction de la structure du BO
+            --> '3-frontoffice' : Construction de la structure du FO
+            --> '3.1-vuejs-3' : Installation et configuration de Vue Js 3
+            --> '3.2-tailwind' : Installation et configuration de Tailwind Css
+            --> '3.3-axios' : Installation et configuration d'Axios
+            --> '4-images' : Mise en place de l'importation des images dans le BO
+            --> '5-design' : Création du design pour le FO
+
+Toutes les branches peuvent être importer en local via la commande git suivante :
+    --> git checkout -t origin/<remote-branch-name>
+    "remote-branch-name" correspondant a l'un des noms de branche ci-dessus.
+
+
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+Synthèse sur la méthodologie de travail.
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
 
 1- Installation de Laravel 9 en control de commande Composer
     --> ```composer create-project --prefer-dist laravel/laravel:^9.0 Hello-CSE-project ```
@@ -76,3 +124,11 @@ Pull request 4 sur 'Master'
 ----------------------------------------------------------------------------------------------------------------
 
 Création branche '4-images'
+
+Mise en place de l'importation des images avec supression des anciennes versions.
+
+Pull Request 5 sur 'Master'
+
+----------------------------------------------------------------------------------------------------------------
+
+Création branche '5-design'
