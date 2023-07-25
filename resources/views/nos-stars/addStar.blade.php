@@ -15,7 +15,7 @@
                         <x-primary-button>Retour à la liste</x-primary-button>
                     </a>
 
-                    <form class="newstar" method="POST" action="{{ route('added-star') }}">
+                    <form class="newstar" method="POST" action="{{ route('added-star') }}" enctype="multipart/form-data">
                         @csrf
                         @method('post')
                         <div class="row g-3">
@@ -37,6 +37,37 @@
                                               placeholder="Description"
                                               required style="width: 100%; height: 500px"/>
                             </div>
+
+                            <div class="col-sm-4 p-6 text-gray-900 dark:text-gray-100">
+                                <x-input-label for="image" :value="__('Image')" />
+                                <x-text-input type="file" class="form-control" name="image" placeholder="Fichier image" id="image" accept="image/*"/>
+                            </div>
+
+                            <img id="previewImage" src="#" alt="Prévisualisation de la nouvelle image"
+                                 style="max-width: 100px;">
+                            <script>
+                                document.getElementById("image").addEventListener("change", function (event) {
+                                    // Récupérer le fichier sélectionné par l'utilisateur
+                                    const file = event.target.files[0];
+
+                                    // Vérifier si un fichier a été sélectionné
+                                    if (file) {
+                                        // Créer une URL locale pour le fichier
+                                        const url = URL.createObjectURL(file);
+
+                                        // Afficher l'image prévisualisée
+                                        const previewImage = document.getElementById("previewImage");
+                                        previewImage.src = url;
+                                        previewImage.style.display = "block";
+                                    } else {
+                                        // Cacher l'image prévisualisée si aucun fichier n'est sélectionné
+                                        const previewImage = document.getElementById("previewImage");
+                                        previewImage.src = "#";
+                                        previewImage.style.display = "none";
+                                    }
+                                });
+                            </script>
+
                             <div class="p-6 text-gray-900 dark:text-gray-100">
                                 <x-primary-button>{{ __('Ajouter la star') }}</x-primary-button>
                             </div>
