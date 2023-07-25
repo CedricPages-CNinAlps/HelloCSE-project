@@ -89,7 +89,7 @@
                                         }
                                     </script>
                                 </td>
-                                <td><img src="{{$star['img']}}" width="100px"></td>
+                                <td><img src="{{$star['image']}}" width="50px"></td>
                             </tr>
                         @endforeach
 

@@ -8,6 +8,7 @@ use App\Models\Star;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class StarController extends Controller
 {
@@ -33,21 +34,25 @@ class StarController extends Controller
 
     public function create(Request $request): RedirectResponse
     {
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-
-        // Récupérer le fichier image depuis le formulaire
-        $image = $request->file('image');
-
-        // Télécharger et enregistrer l'image dans le dossier /images/import
-        $imagePath = $image->store('import', 'public');
-
         $newStar = new Star();
         $newStar->firstname = $request->input('firstname');
         $newStar->lastname = $request->input('lastname');
         $newStar->description = $request->input('description');
-        $newStar->image = $imagePath; // Enregistrez le chemin de l'image dans la base de données
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            // Récupérer le fichier envoyé par l'utilisateur
+            $image = $request->file('image');
+
+            // Générer un nom unique pour l'image (pour éviter les conflits de noms)
+            $imageName = time() . '_' . $image->getClientOriginalName();
+
+            // Enregistrer l'image vers le dossier public/images/import
+            $image->move('images/import', $imageName);
+
+            // Mettre à jour le champ de l'image dans le modèle
+            $newStar->image = '/images/import/' . $imageName;
+        }
+
         $newStar->save();
 
         return Redirect::to('/nos-stars/manage');
@@ -61,31 +66,30 @@ class StarController extends Controller
 
     public function update(Request $request, $id): RedirectResponse
     {
-        $request->validate([
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:8048',
-        ]);
-
-        dd($request->all());
-
         $updateStar = Star::find($id);
         $updateStar->firstname = $request->input('firstname');
         $updateStar->lastname = $request->input('lastname');
         $updateStar->description = $request->input('description');
-        $updateStar->image = $request->input('image');
-        // Vérifier si une nouvelle image a été soumise dans le formulaire
-        if ($request->hasFile('image')) {
-            // Récupérer le fichier image depuis le formulaire
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            // Récupérer le fichier envoyé par l'utilisateur
             $image = $request->file('image');
 
-            // Supprimer l'ancienne image du dossier /images/import
-            Storage::disk('public')->delete($updateStar->image);
+            // Générer un nom unique pour l'image (pour éviter les conflits de noms)
+            $imageName = time() . '_' . $image->getClientOriginalName();
 
-            // Télécharger et enregistrer la nouvelle image dans le dossier /images/import
-            $imagePath = $image->store('import', 'public');
+            // Supprimer l'ancienne image du dossier storage
+            if ($updateStar->image) {
+                File::delete('images/import/' . basename($updateStar->image));
+            }
 
-            // Mettre à jour le chemin de l'image dans la base de données
-            $updateStar->image = $imagePath;
+            // Déplacer l'image vers le dossier public/images/import
+            $image->move('images/import', $imageName);
+
+            // Mettre à jour le champ de l'image dans le modèle
+            $updateStar->image = '/images/import/' . $imageName;
         }
+
         $updateStar->save();
 
         return Redirect::to('/nos-stars/manage');
@@ -94,6 +98,9 @@ class StarController extends Controller
     public function destroy($id): RedirectResponse
     {
         $deleteStar = Star::find($id);
+        if ($deleteStar->image) {
+            File::delete('images/import/' . basename($deleteStar->image));
+        }
         $deleteStar->delete();
         return Redirect::to('/nos-stars/manage');
     }
