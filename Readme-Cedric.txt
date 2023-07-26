@@ -20,7 +20,8 @@ Une fois cela fait, compléter le .env avec les informations précédentes dans 
     --> DB_PASSWORD=hellopw23072023
 
 Un fois tous cela réaliser retourner sur le git bash et lancer :
-    --> "npm install"
+    --> "npm install && composer install"
+    --> "run migration"
     --> "npm run serve && php artisan serve"
 
 Le projet se lancera en http://localhost ou http://127.0.0.1:8000/
